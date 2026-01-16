@@ -104,16 +104,33 @@ body {
 .header-info {
     text-align: right;
     font-size: 0.875rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
 }
 
-.practice-name {
-    display: block;
-    font-weight: 500;
-    color: var(--text-secondary);
+.reset-btn {
+    background: var(--accent-gold);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
-.location {
-    color: var(--text-muted);
+.reset-btn:hover {
+    background: #b3924d;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
 }
 
 /* Chat Container */

@@ -62,6 +62,28 @@ function stopListening() {
 }
 
 /**
+ * Chat zurücksetzen (Neuer Fall)
+ */
+function resetChat() {
+    if (confirm('Möchten Sie den aktuellen Fall schließen und einen neuen Fall starten? Alle bisherigen Nachrichten werden gelöscht.')) {
+        // Historie leeren
+        conversationHistory = [];
+        
+        // DOM leeren (außer Willkommensnachricht)
+        const welcomeMessage = chatMessages.querySelector('.message.assistant');
+        chatMessages.innerHTML = '';
+        if (welcomeMessage) {
+            chatMessages.appendChild(welcomeMessage);
+        }
+        
+        // Input leeren
+        messageInput.value = '';
+        autoResizeTextarea();
+        messageInput.focus();
+    }
+}
+
+/**
  * Nachricht senden
  */
 async function sendMessage() {

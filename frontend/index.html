@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Materia Medica - Homöopathie-Assistent</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/static/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -27,6 +27,9 @@
             <div class="header-info">
                 <span class="practice-name">Praxis Karl Heinz Amann</span>
                 <span class="location">Bad Säckingen</span>
+                <button class="reset-btn" onclick="resetChat()" title="Neuen Fall starten">
+                    <span>+</span> Neuer Fall
+                </button>
             </div>
         </header>
 
@@ -68,9 +71,17 @@
             <!-- Input Area -->
             <div class="input-container">
                 <div class="input-wrapper">
+                    <button id="micBtn" class="mic-btn" title="Symptome diktieren">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                            <line x1="12" y1="19" x2="12" y2="23"/>
+                            <line x1="8" y1="23" x2="16" y2="23"/>
+                        </svg>
+                    </button>
                     <textarea 
                         id="messageInput" 
-                        placeholder="Fragen Sie nach einem Mittel, Symptom oder Vergleich..."
+                        placeholder="Mittel suchen oder Symptome für Analyse eingeben..."
                         rows="1"
                         onkeydown="handleKeyDown(event)"
                     ></textarea>
@@ -85,6 +96,6 @@
         </main>
     </div>
 
-    <script src="script.js"></script>
+    <script src="/static/script.js"></script>
 </body>
 </html>
