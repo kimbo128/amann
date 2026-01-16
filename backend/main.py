@@ -5,6 +5,8 @@ Basierend auf "Klinische Materia Medica" von Robin Murphy
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from openai import OpenAI
 import os
@@ -19,7 +21,7 @@ app = FastAPI(
 # CORS für Frontend-Zugriff
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In Produktion: nur eigene Domain!
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -36,19 +38,15 @@ class ChatRequest(BaseModel):
 
 class ChatResponse(BaseModel):
     response: str
-    
-
-@app.get("/")
-def root():
-    return {"status": "online", "service": "Homöopathie-Chatbot"}
 
 
-@app.get("/health")
+# API Endpoints
+@app.get("/api/health")
 def health_check():
     return {"status": "healthy"}
 
 
-@app.post("/chat", response_model=ChatResponse)
+@app.post("/api/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):
     """
     Hauptendpoint für Chat-Anfragen.
@@ -69,7 +67,7 @@ async def chat(request: ChatRequest):
         response = client.chat.completions.create(
             model="gpt-4o",
             messages=messages,
-            temperature=0.3,  # Niedrig für konsistente, faktische Antworten
+            temperature=0.3,
             max_tokens=2000
         )
         
@@ -81,7 +79,7 @@ async def chat(request: ChatRequest):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.post("/search")
+@app.post("/api/search")
 async def search_remedy(remedy_name: str):
     """
     Direkte Suche nach einem homöopathischen Mittel.
@@ -108,6 +106,16 @@ async def search_remedy(remedy_name: str):
         
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+# Statische Dateien (Frontend)
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+
+# Hauptseite -> Frontend
+@app.get("/")
+async def serve_frontend():
+    return FileResponse("static/index.html")
 
 
 if __name__ == "__main__":
