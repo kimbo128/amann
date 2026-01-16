@@ -5,12 +5,9 @@
 
 // Konfiguration
 const CONFIG = {
-    // Für lokale Entwicklung:
-    // API_URL: 'http://localhost:8000'
-    // Für Railway Production (wird nach Deployment angepasst):
     API_URL: window.location.hostname === 'localhost' 
         ? 'http://localhost:8000' 
-        : 'https://amann-backend.railway.app'  // Hier deine Railway URL eintragen!
+        : 'https://amann-production.up.railway.app'
 };
 
 // Konversations-Historie
