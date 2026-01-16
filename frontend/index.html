@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materia Medica - Homöopathie-Assistent</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 2L12 6M12 18L12 22M6 12L2 12M22 12L18 12"/>
+                    <circle cx="12" cy="12" r="4"/>
+                    <circle cx="12" cy="12" r="8" stroke-dasharray="4 2"/>
+                </svg>
+                <div class="logo-text">
+                    <h1>Materia Medica</h1>
+                    <span class="subtitle">Robin Murphy • Digital Edition</span>
+                </div>
+            </div>
+            <div class="header-info">
+                <span class="practice-name">Praxis Karl Heinz Amann</span>
+                <span class="location">Bad Säckingen</span>
+            </div>
+        </header>
+
+        <!-- Main Chat Area -->
+        <main class="chat-container">
+            <div class="chat-messages" id="chatMessages">
+                <!-- Welcome Message -->
+                <div class="message assistant">
+                    <div class="message-content">
+                        <div class="welcome-icon">📖</div>
+                        <h2>Willkommen zur Klinischen Materia Medica</h2>
+                        <p>Ich bin Ihr digitaler Assistent, basierend auf Robin Murphy's Standardwerk. Stellen Sie mir Fragen zu:</p>
+                        <ul class="welcome-list">
+                            <li><strong>Homöopathischen Mitteln</strong> – z.B. "Erzähle mir über Arnica"</li>
+                            <li><strong>Symptomen</strong> – z.B. "Welches Mittel bei brennenden Kopfschmerzen?"</li>
+                            <li><strong>Vergleichen</strong> – z.B. "Unterschied zwischen Bryonia und Rhus tox"</li>
+                            <li><strong>Modalitäten</strong> – z.B. "Mittel mit Verschlechterung durch Kälte"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <button class="quick-btn" onclick="sendQuickMessage('Gib mir eine Übersicht zu Nux vomica')">
+                    Nux vomica
+                </button>
+                <button class="quick-btn" onclick="sendQuickMessage('Welche Mittel helfen bei akuten Kopfschmerzen?')">
+                    Kopfschmerzen
+                </button>
+                <button class="quick-btn" onclick="sendQuickMessage('Vergleiche Pulsatilla und Sepia')">
+                    Pulsatilla vs Sepia
+                </button>
+                <button class="quick-btn" onclick="sendQuickMessage('Wichtigste Erkältungsmittel')">
+                    Erkältung
+                </button>
+            </div>
+
+            <!-- Input Area -->
+            <div class="input-container">
+                <div class="input-wrapper">
+                    <textarea 
+                        id="messageInput" 
+                        placeholder="Fragen Sie nach einem Mittel, Symptom oder Vergleich..."
+                        rows="1"
+                        onkeydown="handleKeyDown(event)"
+                    ></textarea>
+                    <button class="send-btn" id="sendBtn" onclick="sendMessage()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 2L11 13M22 2L15 22L11 13L2 9L22 2Z"/>
+                        </svg>
+                    </button>
+                </div>
+                <p class="disclaimer">Basierend auf klassischer homöopathischer Literatur. Ersetzt keine ärztliche Beratung.</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
