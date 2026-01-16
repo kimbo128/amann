@@ -382,25 +382,89 @@ body {
     background: var(--text-muted);
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-    .header {
-        flex-direction: column;
-        gap: 12px;
-        text-align: center;
+/* Profi-Features Styling */
+.message-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border-light);
+}
+
+.action-btn {
+    background: transparent;
+    border: 1px solid var(--border-medium);
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.2s;
+}
+
+.action-btn:hover {
+    background: var(--bg-secondary);
+    color: var(--accent-primary);
+    border-color: var(--accent-primary);
+}
+
+.mic-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.mic-btn.active {
+    color: #e74c3c;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Tabellen-Styling für Vergleiche */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 0.9rem;
+}
+
+th, td {
+    border: 1px solid var(--border-light);
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background: var(--bg-secondary);
+    font-family: var(--font-serif);
+}
+
+/* Druck-Optimierung */
+@media print {
+    .input-container, .quick-actions, .header, .action-btn {
+        display: none !important;
     }
-    
-    .header-info {
-        text-align: center;
+    .app-container {
+        max-width: 100%;
     }
-    
-    .message-content {
-        max-width: 95%;
-        padding: 16px;
-    }
-    
-    .welcome-list {
-        grid-template-columns: 1fr;
+    .message.assistant .message-content {
+        border: none;
+        box-shadow: none;
+        padding: 0;
     }
 }
 
